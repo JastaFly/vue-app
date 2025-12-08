@@ -7,8 +7,8 @@
   <a href="/" class="logo">conduit</a>
   <menu>
     <a class="link" href="">Home</a>
-    <router-link  class="link" to="/login" active-class="link__active">Sing in</router-link>
-    <router-link class="link" to="/registration" active-class="link__active">Sing up</router-link>
+    <router-link  class="link" to="/login" active-class="link__active">Sign in</router-link>
+    <router-link class="link" to="/registration" active-class="link__active">Sign up</router-link>
   </menu>
 </header>
 </template>
