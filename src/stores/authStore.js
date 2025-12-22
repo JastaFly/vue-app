@@ -1,15 +1,16 @@
 import { defineStore } from 'pinia'
 import { ref} from 'vue'
-import {registration as registrationApi} from '@/api/auth'
+import {registration as registrationApi, login as loginApi, getCurrentUser as getCurrentUserApi} from '@/api/auth'
 import { useRouter } from 'vue-router'
 import {setItem} from "@/helpers/persistenceStorage";
 
 export const useAuthStore = defineStore('auth', () => {
     const router = useRouter()
     let isSubmit = ref(false)
-    let currentUser = ref(null)
+    let currentUser = ref({})
     let isLoggedIn = ref(null)
     let validationErrors = ref({})
+    let isLoading = ref(false)
 
 
     function registrationStart() {
@@ -26,6 +27,81 @@ export const useAuthStore = defineStore('auth', () => {
     function registrationFail(error) {
         isSubmit.value = false
         validationErrors.value = error
+    }
+
+    function loginStart() {
+        registrationStart()
+    }
+
+    function loginSuccess(newUser) {
+        registrationSuccess(newUser)
+    }
+
+    function loginFail(error) {
+        registrationFail(error)
+    }
+
+    function getCurrentUserStart() {
+        isLoading.value = true
+    }
+
+    function getCurrentUserSuccess(loadUser) {
+        isLoading.value = false
+        currentUser.value = loadUser
+        isLoggedIn.value = true
+    }
+
+    function getCurrentUserFailure() {
+        isLoading.value = false
+        isLoggedIn.value = false
+        currentUser.value = {}
+    }
+
+    function login(authData) {
+        loginStart()
+        loginApi(authData).then((response) => {
+
+
+            response.json().then((result) => {
+
+
+                if(result.user) {
+
+                    getCurrentUserSuccess(result.user)
+                }
+
+
+            }).catch(() => {
+                getCurrentUserFailure()
+
+            })
+
+        })
+    }
+
+    function getCurrentUser() {
+        getCurrentUserStart()
+        getCurrentUserApi().then((response) => {
+
+
+            response.json().then((result) => {
+
+
+                if(result.user) {
+                    setItem('accessToken', result.user.token)
+                    loginSuccess(result.user)
+                }
+
+                if(result.errors) {
+                    validationErrors.value = result.errors
+                }
+
+            }).catch((error) => {
+                loginFail(error)
+
+            })
+
+        })
     }
 
     function registration(registrationData) {
@@ -53,6 +129,7 @@ export const useAuthStore = defineStore('auth', () => {
         })
     }
 
+
     return {
         registrationSuccess,
         registrationStart,
@@ -61,6 +138,8 @@ export const useAuthStore = defineStore('auth', () => {
         registration,
         currentUser,
         isLoggedIn,
-        validationErrors
+        validationErrors,
+        login,
+        getCurrentUser
     }
 })

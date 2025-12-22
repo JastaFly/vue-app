@@ -1,14 +1,24 @@
 <script setup>
 
+
+import { useAuthStore } from '@/stores/authStore'
+import MainMenu from "@/views/MainMenu.vue";
+import {storeToRefs} from "pinia";
+import AccountMenu from "@/views/AccountMenu.vue";
+
+const authStore = useAuthStore()
+const {isLoggedIn} = storeToRefs(authStore)
+
 </script>
 
 <template>
 <header>
   <a href="/" class="logo">conduit</a>
   <menu>
-    <a class="link" href="">Home</a>
-    <router-link  class="link" to="/login" active-class="link__active">Sign in</router-link>
-    <router-link class="link" to="/registration" active-class="link__active">Sign up</router-link>
+
+
+    <AccountMenu v-if="isLoggedIn"></AccountMenu>
+    <MainMenu v-else></MainMenu>
   </menu>
 </header>
 </template>
@@ -23,24 +33,11 @@ header {
   padding-right: 200px;
 }
 
-.logo {
-  color: #5CB85C;
-  font-size: 32px;
-  text-decoration: none;
-  font-weight: bold;
-}
 
-.link {
-  color: #b9bab9;
-}
-
-.link__active {
-  color: #333333;
-}
 
 menu {
-  width: 15%;
   display: flex;
   justify-content: space-between;
+  padding-left: 0;
 }
 </style>

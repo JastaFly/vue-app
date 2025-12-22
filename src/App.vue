@@ -3,15 +3,16 @@
   <router-view></router-view>
 </template>
 
-<script>
+<script setup>
+import { onMounted } from 'vue'
 import AppHeader from "@/components/AppHeader.vue";
+import { useAuthStore } from '@/stores/authStore';
 
-export default {
-  name: 'App',
-  components: {
-    AppHeader,
-  }
-}
+const authStore = useAuthStore()
+
+onMounted(() => {
+  authStore.getCurrentUser()
+})
 </script>
 
 <style>
@@ -71,5 +72,32 @@ input[disabled] {
 
 input[type=submit]:hover {
   background-color: #449d44;
+}
+
+.logo {
+  color: #5CB85C;
+  font-size: 32px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.link {
+  color: #b9bab9;
+  transition: 0.5s;
+  display: flex;
+  align-items: center;
+  margin-right: 15px;
+}
+
+.link:last-child {
+  margin-right: 0;
+}
+
+.link:hover {
+  color: #666666;
+}
+
+.link__active {
+  color: #333333;
 }
 </style>
