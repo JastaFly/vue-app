@@ -20,6 +20,10 @@ onMounted(() => {
 body {
   font-family: 'Exo 2';
   margin: 0;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 200px;
+  padding-right: 200px;
 }
 
 h2 {

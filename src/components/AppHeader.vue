@@ -27,10 +27,7 @@ const {isLoggedIn} = storeToRefs(authStore)
 header {
   display: flex;
   justify-content: space-between;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  padding-left: 200px;
-  padding-right: 200px;
+
 }
 
 
