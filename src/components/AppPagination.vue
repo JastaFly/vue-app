@@ -56,6 +56,7 @@ console.log(props.currentPage)
 }
 
 .pagination__item:hover {
-  background-color: #F3F3F3;
+  background-color: #eaece6;
+  text-decoration: underline;
 }
 </style>
