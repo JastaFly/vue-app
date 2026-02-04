@@ -7,6 +7,7 @@ import {paginationLimit} from "@/helpers/vars";
 import { useRoute } from 'vue-router'
 import { computed, watch } from 'vue'
 import PopularTags from "@/components/PopularTags.vue";
+import AppBanner from "@/components/AppBanner.vue";
 
 
 const feedStore = useFeedStore()
@@ -32,6 +33,7 @@ watch(currentPage, () => {
 </script>
 
 <template>
+  <AppBanner></AppBanner>
   <main>
     <div class="feeds-wrap">
       <div class="tab">
