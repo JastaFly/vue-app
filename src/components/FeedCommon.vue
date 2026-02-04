@@ -2,6 +2,7 @@
 import {useFeedStore} from "@/stores/feedStore";
 import {storeToRefs} from "pinia";
 import AppLoading from "@/components/AppLoading.vue";
+import ErrorMessage from "@/components/ErrorMessage.vue";
 
 const feedStore = useFeedStore()
 const {feeds, isLoading, feedError} = storeToRefs(feedStore)
@@ -23,7 +24,7 @@ setTimeout(() => {
 
 <template>
 <AppLoading v-if="isLoading"></AppLoading>
-  <div v-if="feedError">{{feedError}}</div>
+  <ErrorMessage v-if="feedError" :error="feedError"></ErrorMessage>
   <div class="feeds" v-if="feeds" >
     <div class="feed" v-for="(article, index) in feeds.articles" :key="index">
       <div class="feed__top">
