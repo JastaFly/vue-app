@@ -2,7 +2,7 @@
 import {storeToRefs} from "pinia";
 import {useTagsStore} from "@/stores/tagsStore";
 import {onMounted} from "vue";
-
+import AppLoading from "@/components/AppLoading.vue";
 
 const tagsStore = useTagsStore()
 const {tags, tagsError, isLoading} = storeToRefs(tagsStore)
@@ -18,7 +18,7 @@ setTimeout(() => {
 </script>
 
 <template>
-  <div v-if="isLoading">Loading...</div>
+  <AppLoading v-if="isLoading"></AppLoading>
   <div v-if="tagsError">{{tagsError}}</div>
   <div v-if="tags" class="tags">
     <span class="tag" v-for="(tag, index) in tags.tags" :key="index">
