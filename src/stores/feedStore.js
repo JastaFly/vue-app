@@ -17,6 +17,8 @@ export const useFeedStore = defineStore('feed', () => {
     function feedSuccess(feedData) {
         isLoading.value = false
         feeds.value = feedData
+        console.log(2222222)
+        console.log(feedData)
         feedsTotal.value = feedData.articlesCount
 
     }

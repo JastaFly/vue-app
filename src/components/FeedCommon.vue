@@ -16,7 +16,7 @@ const props = defineProps({
 
 feedStore.getFeed(props.url)
 setTimeout(() => {
-  console.log(feeds.value)
+  console.log(feeds)
 }, 2000)
 
 

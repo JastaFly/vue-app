@@ -19,10 +19,14 @@ export const useAuthStore = defineStore('auth', () => {
     }
 
     function registrationSuccess(newUser) {
-        isSubmit.value = false
-        currentUser.value = newUser
-        isLoggedIn.value = true
+        auth(newUser)
         router.push('/')
+    }
+
+    function auth(authUser) {
+        isSubmit.value = false
+        currentUser.value = authUser
+        isLoggedIn.value = true
     }
     function registrationFail(error) {
         isSubmit.value = false
@@ -33,8 +37,8 @@ export const useAuthStore = defineStore('auth', () => {
         registrationStart()
     }
 
-    function loginSuccess(newUser) {
-        registrationSuccess(newUser)
+    function loginSuccess(user) {
+        auth(user)
     }
 
     function loginFail(error) {

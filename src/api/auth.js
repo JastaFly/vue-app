@@ -1,4 +1,4 @@
-import {getItem} from '@/helpers/persistenceStorage'
+import {getAssessToken} from "@/helpers/utils";
 
 function sendUserRequest(userData, partUrl = '') {
     return  fetch(`/api/users/${partUrl}`, {
@@ -19,17 +19,12 @@ function login(loginData) {
 }
 
 function getCurrentUser() {
-    let authToken = getItem('accessToken')
-
-    if(authToken) {
-        authToken = `Token ${authToken}`
-    }
 
 
     return fetch('/api/user/', {
         method: 'GET',
         headers: {
-            'Authorization': authToken
+            'Authorization': getAssessToken()
         }
     })
 }
