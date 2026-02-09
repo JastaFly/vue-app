@@ -8,6 +8,7 @@ import { useRoute } from 'vue-router'
 import { computed, watch } from 'vue'
 import PopularTags from "@/components/PopularTags.vue";
 import AppBanner from "@/components/AppBanner.vue";
+import FeedMenu from "@/components/FeedMenu.vue";
 
 
 const feedStore = useFeedStore()
@@ -36,11 +37,8 @@ watch(currentPage, () => {
   <AppBanner></AppBanner>
   <main>
     <div class="feeds-wrap">
-      <div class="tab">
-        <p class="tab__item tab__item_active">Your feed</p>
-        <p class="tab__item">Global Feed</p>
-      </div>
 
+<FeedMenu></FeedMenu>
       <Feed :url="url"></Feed>
       <Pagination :limit="paginationLimit" :total="feedsTotal" :current-page="currentPage" :url="baseUrl"></Pagination>
     </div>
@@ -50,33 +48,14 @@ watch(currentPage, () => {
 </template>
 
 <style scoped>
-main {
-  padding-top: 30px;
-}
-.tab {
-  display: flex;
-}
 
-.tab__item {
-  color: #b9bab9;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-left: 10px;
-  padding-right: 10px;
-  cursor: pointer;
-  margin-top: 0;
-  margin-bottom: 0;
-}
 
-.tab__item_active {
-  color: #5CB85C;
-  border-bottom: 2px #5CB85C solid;
-}
 
 main {
   display: grid;
   grid-template-columns: 4fr 1fr;
   grid-column-gap: 20px;
+  padding-top: 30px;
 }
 
 </style>
