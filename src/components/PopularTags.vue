@@ -22,9 +22,9 @@ setTimeout(() => {
   <AppLoading v-if="isLoading"></AppLoading>
   <ErrorMessage  v-if="tagsError" :error="tagsError"></ErrorMessage>
   <div v-if="tags" class="tags">
-    <span class="tag" v-for="(tag, index) in tags.tags" :key="index">
+    <router-link  class="tag" v-for="(tag, index) in tags.tags" :key="index" :to="{name: 'tag', params: {slug: tag}}">
       {{tag}}
-    </span>
+    </router-link>
   </div>
 </template>
 
