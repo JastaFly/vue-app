@@ -16,8 +16,8 @@ const {feedsTotal} = storeToRefs(feedStore)
 const route = useRoute()
 
 
-
-let url = `/articles?tag=${route.params.slug}`
+let tag = route.params.slug
+let url = `/articles?tag=${tag}`
 let currentPage = computed(() => {
   return Number(route.query.page || '1')
 })
@@ -40,7 +40,7 @@ watch(currentPage, () => {
   <main>
     <div class="feeds-wrap">
 
-      <FeedMenu></FeedMenu>
+      <FeedMenu :tag="tag"></FeedMenu>
       <Feed :url="url"></Feed>
       <Pagination :limit="paginationLimit" :total="feedsTotal" :current-page="currentPage" :url="baseUrl"></Pagination>
     </div>
