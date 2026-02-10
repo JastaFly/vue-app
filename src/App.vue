@@ -78,6 +78,13 @@ input[type=submit]:hover {
   background-color: #449d44;
 }
 
+main {
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  grid-column-gap: 20px;
+  padding-top: 30px;
+}
+
 .logo {
   color: #5CB85C;
   font-size: 32px;

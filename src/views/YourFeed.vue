@@ -71,10 +71,5 @@ main {
   border-bottom: 2px #5CB85C solid;
 }
 
-main {
-  display: grid;
-  grid-template-columns: 4fr 1fr;
-  grid-column-gap: 20px;
-}
 
 </style>

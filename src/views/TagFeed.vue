@@ -53,11 +53,4 @@ watch(currentPage, () => {
 
 
 
-main {
-  display: grid;
-  grid-template-columns: 4fr 1fr;
-  grid-column-gap: 20px;
-  padding-top: 30px;
-}
-
 </style>
