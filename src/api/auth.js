@@ -1,4 +1,4 @@
-import {getAssessToken} from "@/helpers/utils";
+import {authGet} from "@/helpers/request";
 
 function sendUserRequest(userData, partUrl = '') {
     return  fetch(`/api/users/${partUrl}`, {
@@ -21,12 +21,7 @@ function login(loginData) {
 function getCurrentUser() {
 
 
-    return fetch('/api/user/', {
-        method: 'GET',
-        headers: {
-            'Authorization': getAssessToken()
-        }
-    })
+    return authGet('/api/user/')
 }
 export  {
     registration,
