@@ -5,28 +5,22 @@ import {useFeedStore} from "@/stores/feedStore";
 import {storeToRefs} from "pinia";
 import {paginationLimit} from "@/helpers/vars";
 import { useRoute } from 'vue-router'
-import { computed, watch } from 'vue'
+import { watch } from 'vue'
 import PopularTags from "@/components/PopularTags.vue";
 import AppBanner from "@/components/AppBanner.vue";
 import FeedMenu from "@/components/FeedMenu.vue";
 
 
 const feedStore = useFeedStore()
-const {feedsTotal} = storeToRefs(feedStore)
+const {feedsTotal, currentPage, offset, baseUrl} = storeToRefs(feedStore)
 const route = useRoute()
 
 
 let tag = route.params.slug
 let url = `/articles?tag=${tag}`
-let currentPage = computed(() => {
-  return Number(route.query.page || '1')
-})
-let baseUrl = computed(() => {
-  return route.path
-})
-let offset = computed(() => {
-  return currentPage.value * paginationLimit - paginationLimit
-})
+
+
+
 watch(currentPage, () => {
 
 

@@ -1,13 +1,25 @@
 import { defineStore } from 'pinia'
-import {ref} from "vue";
+import {computed, ref} from "vue";
 import getFeedApi from "@/api/feed";
-
+import { useRoute } from 'vue-router'
+import {paginationLimit} from "@/helpers/vars";
 
 export const useFeedStore = defineStore('feed', () => {
+    const route = useRoute()
+
     let feeds = ref(null)
     let isLoading = ref(false)
     let feedError = ref(null)
     let feedsTotal = ref(0)
+    let currentPage = computed(() => {
+        return Number(route.query.page || '1')
+    })
+    let baseUrl = computed(() => {
+        return route.path
+    })
+    let offset = computed(() => {
+        return currentPage.value * paginationLimit - paginationLimit
+    })
 
     function feedStart() {
         isLoading.value = true
@@ -51,6 +63,9 @@ export const useFeedStore = defineStore('feed', () => {
         feeds,
         feedError,
         isLoading,
-        feedsTotal
+        feedsTotal,
+        currentPage,
+        baseUrl,
+        offset
     }
 })
