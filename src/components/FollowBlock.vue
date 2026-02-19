@@ -95,7 +95,7 @@ if(props.viewMode === 'center') {
 }
 .follow__icon {
   width: 15px;
-  margin-right: 10px;
+  margin-right: 5px;
   fill: #44964a;
 }
 
