@@ -3,6 +3,7 @@ import {useFeedStore} from "@/stores/feedStore";
 import {storeToRefs} from "pinia";
 import AppLoading from "@/components/AppLoading.vue";
 import ErrorMessage from "@/components/ErrorMessage.vue";
+import ArticleAuthor from "@/components/ArticleAuthor.vue";
 
 const feedStore = useFeedStore()
 const {feeds, isLoading, feedError} = storeToRefs(feedStore)
@@ -15,9 +16,7 @@ const props = defineProps({
 })
 
 feedStore.getFeed(props.url)
-setTimeout(() => {
-  console.log(feeds)
-}, 2000)
+
 
 
 </script>
@@ -28,18 +27,7 @@ setTimeout(() => {
   <div class="feeds" v-if="feeds" >
     <div class="feed" v-for="(article, index) in feeds.articles" :key="index">
       <div class="feed__top">
-        <div class="author">
-          <img :src="article.author.image" :alt="article.author.username" class="author__img">
-          <div class="author__wrap">
-            <p href="" class="author__name">{{article.author.username}}</p>
-            <p class="author__date">{{ new Intl.DateTimeFormat('en-US', {
-              year: 'numeric',
-              month: 'long',
-              day: '2-digit'
-            }).format(new Date(article.createdAt))}}</p>
-          </div>
-
-        </div>
+        <ArticleAuthor :author="article.author" :source-date="article.createdAt"></ArticleAuthor>
         <div class="like">
           <svg xmlns="http://www.w3.org/2000/svg" class="like__icon" viewBox="0 0 24 24">
             <path d="M12 4.419c-2.826-5.695-11.999-4.064-11.999 3.27 0 7.27 9.903 10.938 11.999 15.311 2.096-4.373 12-8.041 12-15.311 0-7.327-9.17-8.972-12-3.27z"/>
@@ -49,7 +37,7 @@ setTimeout(() => {
       </div>
       <p class="feed__title">{{article.title}}</p>
       <p class="feed__description">{{article.description}}</p>
-      <p class="feed__link">Read more...</p>
+      <router-link :to="`article/${article.slug}/`" class="feed__link">Read more...</router-link>
     </div>
   </div>
 </template>
@@ -80,29 +68,14 @@ setTimeout(() => {
 .feed__link {
   color: #b9bab9;
   font-size: 14px;
+  text-decoration: none;
 }
 
-.author {
-  display: flex;
-  align-items: center;
+.feed__link:hover {
+  text-decoration: underline;
 }
 
-.author__name {
-  color: #5CB85C;
-  margin-bottom: 0;
-  margin-top: 0;
-}
 
-.author__img {
-  margin-right: 15px;
-}
-
-.author__date {
-  color: #b9bab9;
-  margin-top: 5px;
-  margin-bottom: 0;
-  font-size: 14px;
-}
 
 .like {
   border: 1px solid #5CB85C;

@@ -10,14 +10,7 @@
 </template>
 
 <style scoped>
-.banner {
-  background-color: #5CB85C;
-  box-shadow: inset 0 8px 8px -8px rgba(0, 0, 0, 0.3), inset 0 -8px 8px -8px rgba(0, 0, 0, 0.3);
-  padding-top: 50px;
-  padding-bottom: 50px;
-  margin-left: -200px;
-  margin-right: -200px;
-}
+
 
 h1 {
   text-align: center;

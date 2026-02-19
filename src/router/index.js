@@ -5,13 +5,15 @@ import LoginPage from "@/views/LoginPage.vue";
 import GlobalFeed from "@/views/GlobalFeed.vue";
 import YourFeed from "@/views/YourFeed.vue";
 import TagFeed from "@/views/TagFeed.vue";
+import ArticlePage from "@/views/ArticlePage.vue";
 
 const routes = [
     { path: '/registration', component: RegistrationPage },
     { path: '/login', component: LoginPage },
     { path: '/', component: GlobalFeed },
     { path: '/feed', component: YourFeed },
-    { path: '/tags/:slug', component: TagFeed, name: 'tag' }
+    { path: '/tags/:slug', component: TagFeed, name: 'tag' },
+    { path: '/article/:slug', component: ArticlePage, name: 'article' }
 ]
 
 export const router = createRouter({

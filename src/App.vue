@@ -100,6 +100,12 @@ main {
   margin-right: 15px;
 }
 
+.link__icon {
+  width: 25px;
+  margin-right: 10px;
+  fill: #AAAAAA;
+}
+
 .link:last-child {
   margin-right: 0;
 }
@@ -110,5 +116,16 @@ main {
 
 .link__active {
   color: #333333;
+}
+
+.banner {
+  background-color: #5CB85C;
+  box-shadow: inset 0 8px 8px -8px rgba(0, 0, 0, 0.3), inset 0 -8px 8px -8px rgba(0, 0, 0, 0.3);
+  padding-top: 50px;
+  padding-bottom: 50px;
+  margin-left: -200px;
+  margin-right: -200px;
+  padding-left: 200px;
+  padding-right: 200px;
 }
 </style>
