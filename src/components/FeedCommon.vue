@@ -4,6 +4,7 @@ import {storeToRefs} from "pinia";
 import AppLoading from "@/components/AppLoading.vue";
 import ErrorMessage from "@/components/ErrorMessage.vue";
 import ArticleAuthor from "@/components/ArticleAuthor.vue";
+import ArticleTags from "@/components/ArticleTags.vue";
 
 const feedStore = useFeedStore()
 const {feeds, isLoading, feedError} = storeToRefs(feedStore)
@@ -37,7 +38,10 @@ feedStore.getFeed(props.url)
       </div>
       <p class="feed__title">{{article.title}}</p>
       <p class="feed__description">{{article.description}}</p>
-      <router-link :to="`article/${article.slug}/`" class="feed__link">Read more...</router-link>
+      <div class="feed__footer">
+        <router-link :to="`article/${article.slug}/`" class="feed__link">Read more...</router-link>
+        <ArticleTags :tags="article.tagList"></ArticleTags>
+      </div>
     </div>
   </div>
 </template>
@@ -75,7 +79,10 @@ feedStore.getFeed(props.url)
   text-decoration: underline;
 }
 
-
+.feed__footer {
+  display: flex;
+  justify-content: space-between;
+}
 
 .like {
   border: 1px solid #5CB85C;

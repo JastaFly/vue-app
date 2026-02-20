@@ -6,6 +6,7 @@ import {useRoute} from 'vue-router'
 import {storeToRefs} from "pinia";
 import AppLoading from "@/components/AppLoading.vue";
 import UserAva from "@/components/UserAva.vue";
+import ArticleTags from "@/components/ArticleTags.vue";
 
 const articleStore = useArticleStore()
 const {article, isLoading} = storeToRefs(articleStore)
@@ -29,6 +30,7 @@ setTimeout(() => {
       <FollowBlock :favorites-count="article.favoritesCount" :source-date="article.createdAt" :author="article.author" :view-mode="'dark-bg'"></FollowBlock>
     </div>
     <p v-if="article" class="article">{{article.body}}</p>
+    <ArticleTags :tags="article.tagList"></ArticleTags>
     <hr>
     <FollowBlock :favorites-count="article.favoritesCount" :source-date="article.createdAt" :author="article.author" :view-mode="'center'"></FollowBlock>
     <form action="" name="comment">
@@ -48,6 +50,7 @@ h1 {
 }
 
 hr {
+  margin-top: 20px;
   margin-bottom: 30px;
 }
 
