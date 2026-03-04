@@ -19,6 +19,18 @@ function authGet(url) {
     })
 }
 
+function authPost(url, data) {
+    return  fetch(url, {
+        method: 'POST',
+        headers: {
+            'Authorization': getAssessToken(),
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+}
+
 export {
-    authGet
+    authGet,
+    authPost
 }

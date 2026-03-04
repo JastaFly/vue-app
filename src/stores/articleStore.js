@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import {ref} from "vue";
-import getArticleRequest from "@/api/article";
+import {getArticleRequest} from "@/api/article";
 
 
 export const useArticleStore = defineStore('article', () => {

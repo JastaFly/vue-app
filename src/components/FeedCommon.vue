@@ -39,7 +39,7 @@ feedStore.getFeed(props.url)
       <p class="feed__title">{{article.title}}</p>
       <p class="feed__description">{{article.description}}</p>
       <div class="feed__footer">
-        <router-link :to="`article/${article.slug}/`" class="feed__link">Read more...</router-link>
+        <router-link :to="`articles/${article.slug}/`" class="feed__link">Read more...</router-link>
         <ArticleTags :tags="article.tagList"></ArticleTags>
       </div>
     </div>
