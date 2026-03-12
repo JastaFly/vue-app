@@ -1,6 +1,6 @@
 <script setup>
 import {ref} from "vue";
-import {useCreateArticleStore} from "@/stores/crateArticleStore";
+import {useCreateArticleStore} from "@/stores/createArticleStore";
 import ValidationErrors from "@/components/ValidationErrors.vue";
 import {storeToRefs} from "pinia";
 
