@@ -27,7 +27,7 @@ setTimeout(() => {
   <article v-if="article">
     <div  class="banner banner_dark">
       <h1>{{ article.title }}</h1>
-      <FollowBlock :favorites-count="article.favoritesCount" :source-date="article.createdAt" :author="article.author" :view-mode="'dark-bg'"></FollowBlock>
+      <FollowBlock :favorites-count="article.favoritesCount" :source-date="article.createdAt" :author="article.author" :slug="article.slug" :view-mode="'dark-bg'"></FollowBlock>
     </div>
     <p v-if="article" class="article">{{article.body}}</p>
     <ArticleTags :tags="article.tagList"></ArticleTags>

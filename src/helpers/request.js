@@ -30,7 +30,17 @@ function authPost(url, data) {
     })
 }
 
+function authDelete(url) {
+    return  fetch(url, {
+        method: 'DELETE',
+        headers: {
+            'Authorization': getAssessToken()
+        }
+    })
+}
+
 export {
     authGet,
-    authPost
+    authPost,
+    authDelete
 }
