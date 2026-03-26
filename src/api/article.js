@@ -1,4 +1,4 @@
-import {authPost, authDelete} from "@/helpers/request";
+import {authPost, authDelete, authPut} from "@/helpers/request";
 
 
 function getArticleRequest(slug) {
@@ -22,8 +22,17 @@ function deleteArticleRequest(slug) {
     })
 }
 
+function updateArticleRequest(slug, articleData) {
+
+    return authPut(`/api/articles/${slug}`, {article: articleData}).then((response) => {
+
+        return response.json()
+    })
+}
+
 export {
     getArticleRequest,
     createArticleRequest,
-    deleteArticleRequest
+    deleteArticleRequest,
+    updateArticleRequest
 }

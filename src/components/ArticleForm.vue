@@ -1,25 +1,49 @@
 <script setup>
-import {ref} from "vue";
+import {ref, watch } from "vue";
 import {useCreateArticleStore} from "@/stores/createArticleStore";
 import ValidationErrors from "@/components/ValidationErrors.vue";
 import {storeToRefs} from "pinia";
 
+const props = defineProps({
+  article: {
+    type: Object,
+
+  }
+})
 let title = ref('')
 let about = ref('')
 let text = ref('')
 let tags = ref('')
 
+watch(() => props.article, (newArticle) => {
+
+
+    if(newArticle) {
+      title.value = newArticle.title;
+      about.value = newArticle.description
+      text.value = newArticle.body
+      tags.value = newArticle.tagList?.toString()
+    }
+}, { immediate: true })
+
+
+
 const createArticleStore = useCreateArticleStore()
 const {validationErrors} = storeToRefs(createArticleStore)
+const emit = defineEmits(['submit'])
 
 function onSubmit() {
-  createArticleStore.createArticle({
-    id: 1,
+
+
+
+  emit('submit', {
+
     title: title.value,
     description: about.value,
     body: text.value,
-    tags: tags.value.split(' ')
-  })
+    tagsList: tags.value.split(' ')
+  });
+
 }
 </script>
 

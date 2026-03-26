@@ -39,8 +39,21 @@ function authDelete(url) {
     })
 }
 
+function authPut(url, data) {
+
+    return  fetch(url, {
+        method: 'PUT',
+        headers: {
+            'Authorization': getAssessToken(),
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+}
+
 export {
     authGet,
     authPost,
-    authDelete
+    authDelete,
+    authPut
 }

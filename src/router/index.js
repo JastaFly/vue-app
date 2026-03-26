@@ -7,6 +7,7 @@ import YourFeed from "@/views/YourFeed.vue";
 import TagFeed from "@/views/TagFeed.vue";
 import ArticlePage from "@/views/ArticlePage.vue";
 import CreateArticle from "@/views/CreateArticle.vue";
+import EditArticle from "@/views/EditArticle.vue";
 
 const routes = [
     { path: '/registration', component: RegistrationPage },
@@ -15,7 +16,8 @@ const routes = [
     { path: '/feed', component: YourFeed },
     { path: '/tags/:slug', component: TagFeed, name: 'tag' },
     { path: '/articles/:slug', component: ArticlePage, name: 'article' },
-    { path: '/articles/new', component: CreateArticle, name: 'createArticle' }
+    { path: '/articles/new', component: CreateArticle, name: 'createArticle' },
+    { path: '/articles/:slug/edit', component: EditArticle, name: 'editArticle' },
 ]
 
 export const router = createRouter({
