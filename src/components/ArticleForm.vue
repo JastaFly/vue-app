@@ -1,5 +1,5 @@
 <script setup>
-import {ref, watch } from "vue";
+import {ref, onMounted } from "vue";
 import {useCreateArticleStore} from "@/stores/createArticleStore";
 import ValidationErrors from "@/components/ValidationErrors.vue";
 import {storeToRefs} from "pinia";
@@ -15,17 +15,14 @@ let about = ref('')
 let text = ref('')
 let tags = ref('')
 
-watch(() => props.article, (newArticle) => {
-
-
-    if(newArticle) {
-      title.value = newArticle.title;
-      about.value = newArticle.description
-      text.value = newArticle.body
-      tags.value = newArticle.tagList?.toString()
-    }
-}, { immediate: true })
-
+onMounted(() => {
+  if (props.article) {
+    title.value = props.article.title
+    about.value = props.article.description
+    text.value = props.article.body
+    tags.value = props.article.tagList?.join(' ')
+  }
+})
 
 
 const createArticleStore = useCreateArticleStore()
@@ -41,7 +38,7 @@ function onSubmit() {
     title: title.value,
     description: about.value,
     body: text.value,
-    tagsList: tags.value.split(' ')
+    tagList: tags.value.split(' ')
   });
 
 }
