@@ -49,10 +49,7 @@ h1 {
   color: white;
 }
 
-hr {
-  margin-top: 20px;
-  margin-bottom: 30px;
-}
+
 
 form {
   width: 70%;

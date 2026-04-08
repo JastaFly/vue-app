@@ -8,15 +8,11 @@ const {currentUser} = storeToRefs(authStore)
 
 <template>
   <a class="link" to="/registration" active-class="link__active">
-    <img class="link__icon link__icon_ava" src="/img/anime_tan.jpg" alt="Аватарка">
+    <img class="link__icon ava" :src="currentUser.image" alt="Аватарка">
     <span class="link__text">{{currentUser.username}}</span>
   </a>
 </template>
 
 <style scoped>
-.link__icon_ava {
-  width: 40px;
-  height: 40px;
-  border-radius: 200px;
-}
+
 </style>

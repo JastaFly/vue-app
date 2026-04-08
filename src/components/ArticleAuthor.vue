@@ -34,7 +34,7 @@ if(props.viewMode === 'dark-bg') {
 
 <template>
   <div class="author">
-    <img :src="author.image" :alt="author.username" class="author__img">
+    <img :src="author.image" :alt="author.username" class="ava mar-r-15">
     <div class="author__wrap">
       <p href="" :class="`author__name ${viewModeCssClass}`">{{author.username}}</p>
       <p class="author__date">{{date }}</p>
@@ -58,8 +58,7 @@ if(props.viewMode === 'dark-bg') {
 .author__name_white {
   color: white;
 }
-
-.author__img {
+.mar-r-15 {
   margin-right: 15px;
 }
 

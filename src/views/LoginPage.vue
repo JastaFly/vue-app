@@ -28,7 +28,7 @@ function onSubmit() {
   <a class="green-link" href="">Have an account?</a>
   <ValidationErrors :errors="validationErrors"></ValidationErrors>
   <form action="" @submit.prevent="onSubmit">
-    <input name="email" type="email" placeholder="Email" v-model="email">
+    <input name="email" type="text" placeholder="Email" v-model="email">
     <input name="pass" type="password" placeholder="Password" v-model="pass">
     <input type="submit" value="Login"  :disabled="isSubmit">
   </form>

@@ -16,6 +16,7 @@ defineProps({
 <style scoped>
 .errors {
   list-style: none;
+  padding-left: 0;
 }
 
 .error {

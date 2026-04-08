@@ -7,11 +7,17 @@
 import { onMounted } from 'vue'
 import AppHeader from "@/components/AppHeader.vue";
 import { useAuthStore } from '@/stores/authStore';
+import {storeToRefs} from "pinia";
 
 const authStore = useAuthStore()
+const {isLoggedIn} = storeToRefs(authStore)
 
 onMounted(() => {
-  authStore.getCurrentUser()
+  console.log(isLoggedIn.value)
+  if(isLoggedIn.value) {
+    authStore.getCurrentUser()
+  }
+
 })
 </script>
 
@@ -58,6 +64,22 @@ input {
   margin-bottom: 10px;
   border-radius: 10px;
   font-size: 18px;
+}
+
+textarea {
+  resize: none;
+  width: 100%;
+  border: 1px solid #d9d9d9;
+  border-radius: 10px;
+  height: 150px;
+  margin-bottom: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-family: "Exo 2";
+  font-size: 18px;
+  box-sizing: border-box;
 }
 
 input[type=submit] {
@@ -127,5 +149,38 @@ main {
   margin-right: -200px;
   padding-left: 200px;
   padding-right: 200px;
+}
+
+.form-w-100 {
+  width: 100%;
+}
+
+.follow {
+  background-color: rgba(0, 0, 0, 0);
+  border: 1px solid #979797;
+  border-radius: 5px;
+  margin-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 10px;
+  padding-left: 10px;
+  height: fit-content;
+  cursor: pointer;
+}
+
+.follow_red {
+  color: #854241;
+  border-color: #854241;
+}
+
+.ava {
+  width: 40px;
+  height: 40px;
+  border-radius: 200px;
+}
+
+hr {
+  margin-top: 20px;
+  margin-bottom: 30px;
 }
 </style>

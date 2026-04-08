@@ -1,14 +1,16 @@
 import { defineStore } from 'pinia'
 import { ref} from 'vue'
-import {registration as registrationApi, login as loginApi, getCurrentUser as getCurrentUserApi} from '@/api/auth'
+import {registration as registrationApi, login as loginApi, getCurrentUser as getCurrentUserApi, updateCurrentUser as  updateCurrentUserRequest} from '@/api/auth'
 import { useRouter } from 'vue-router'
 import {setItem} from "@/helpers/persistenceStorage";
+import {useSettingsStore} from "@/stores/settingsStore";
 
 export const useAuthStore = defineStore('auth', () => {
     const router = useRouter()
+    const settingsStore = useSettingsStore()
     let isSubmit = ref(false)
     let currentUser = ref({})
-    let isLoggedIn = ref(null)
+    let isLoggedIn = ref(false)
     let validationErrors = ref({})
     let isLoading = ref(false)
 
@@ -53,6 +55,7 @@ export const useAuthStore = defineStore('auth', () => {
         isLoading.value = false
         currentUser.value = loadUser
         isLoggedIn.value = true
+        router.push('/')
     }
 
     function getCurrentUserFailure() {
@@ -61,12 +64,21 @@ export const useAuthStore = defineStore('auth', () => {
         currentUser.value = {}
     }
 
+    function updateCurrentUserSuccess(newUser) {
+        currentUser.value = newUser
+    }
+
+    function logout() {
+        currentUser.value = null
+        isLoggedIn.value = false
+        setItem('accessToken', '')
+        router.push('/')
+    }
+
     function login(authData) {
         loginStart()
-        loginApi(authData).then((response) => {
-
-
-            response.json().then((result) => {
+        loginApi(authData).then((result) => {
+            console.log(result)
 
 
                 if(result.user) {
@@ -80,15 +92,13 @@ export const useAuthStore = defineStore('auth', () => {
 
             })
 
-        })
     }
 
     function getCurrentUser() {
         getCurrentUserStart()
-        getCurrentUserApi().then((response) => {
+        getCurrentUserApi().then((result) => {
+                console.log(result.errors)
 
-
-            response.json().then((result) => {
 
 
                 if(result.user) {
@@ -105,7 +115,6 @@ export const useAuthStore = defineStore('auth', () => {
 
             })
 
-        })
     }
 
     function registration(registrationData) {
@@ -132,7 +141,22 @@ export const useAuthStore = defineStore('auth', () => {
 
         })
     }
+    function updateCurrentUser(newUserData) {
+        settingsStore.changeSettingsStart()
+        updateCurrentUserRequest(newUserData).then((result) => {
 
+            if(result.user) {
+settingsStore.changeSettingsSuccess()
+                updateCurrentUserSuccess(result.user)
+            } else {
+                settingsStore.changeSettingsFailure(result.errors)
+            }
+
+
+
+
+        })
+    }
 
     return {
         registrationSuccess,
@@ -144,6 +168,8 @@ export const useAuthStore = defineStore('auth', () => {
         isLoggedIn,
         validationErrors,
         login,
-        getCurrentUser
+        getCurrentUser,
+        updateCurrentUser,
+        logout
     }
 })

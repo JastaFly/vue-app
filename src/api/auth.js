@@ -1,4 +1,4 @@
-import {authGet} from "@/helpers/request";
+import {authGet, authPut} from "@/helpers/request";
 
 function sendUserRequest(userData, partUrl = '') {
     return  fetch(`/api/users/${partUrl}`, {
@@ -15,16 +15,29 @@ function registration(registrationData) {
 }
 
 function login(loginData) {
-    return sendUserRequest(loginData, 'login')
+
+    return sendUserRequest(loginData, 'login').then((responce) => {
+        return responce.json()
+    })
 }
 
 function getCurrentUser() {
 
 
-    return authGet('/api/user/')
+    return authGet('/api/user/').then((responce) => {
+        return responce.json()
+    })
+}
+
+function updateCurrentUser(newUserData) {
+return authPut('/api/user', {user: newUserData}).then((responce) => {
+
+    return responce.json()
+})
 }
 export  {
     registration,
     login,
-    getCurrentUser
+    getCurrentUser,
+    updateCurrentUser
 }

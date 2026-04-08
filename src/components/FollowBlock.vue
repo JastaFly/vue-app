@@ -104,18 +104,7 @@ function deleteArticle() {
   justify-content: center;
 }
 
-.follow {
-  background-color: rgba(0, 0, 0, 0);
-  border: 1px solid #979797;
-  border-radius: 5px;
-  margin-right: 10px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-right: 10px;
-  padding-left: 10px;
-  height: fit-content;
-  cursor: pointer;
-}
+
 
 .follow__text {
   color: #979797;
@@ -126,9 +115,7 @@ function deleteArticle() {
   color: #854241;
 }
 
-.follow_red {
-  border-color: #854241;
-}
+
 
 .follow:last-child {
   margin-right: 0;

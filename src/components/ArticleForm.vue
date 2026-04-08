@@ -46,7 +46,7 @@ function onSubmit() {
 
 <template>
   <ValidationErrors :errors="validationErrors"></ValidationErrors>
-  <form name="article" action="" class="article-form" @submit.prevent="onSubmit">
+  <form name="article" action="" class="form-w-100" @submit.prevent="onSubmit">
     <input type="text" name="title" placeholder="Article Title" v-model="title">
     <input type="text" name="about" placeholder="What's this article about?" v-model="about">
     <textarea name="text" placeholder="Write your article (in markdown)" v-model="text"></textarea>
@@ -56,22 +56,7 @@ function onSubmit() {
 </template>
 
 <style scoped>
-.article-form {
-  width: 100%;
-}
 
-textarea {
-  resize: none;
-  width: 100%;
-  border: 1px solid #d9d9d9;
-  border-radius: 10px;
-  height: 150px;
-  margin-bottom: 10px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 15px;
-  padding-right: 15px;
-  font-family: "Exo 2";
-  font-size: 18px;
-}
+
+
 </style>
