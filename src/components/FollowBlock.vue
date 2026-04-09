@@ -83,7 +83,7 @@ function deleteArticle() {
           <path
               d="M12 4.435c-1.989-5.399-12-4.597-12 3.568 0 4.068 3.06 9.481 12 14.997 8.94-5.516 12-10.929 12-14.997 0-8.118-10-8.999-12-3.568z"/>
         </svg>
-        <span class="follow__text">{{`Favorite Article (${favoritesCount})`}}</span>
+        <span class="follow__text follow__text_green">{{`Favorite Article (${favoritesCount})`}}</span>
       </button>
     </div>
 
@@ -138,7 +138,7 @@ function deleteArticle() {
   align-items: center;
 }
 
-.follow__text {
+.follow__text_green {
   color: #44964a;
 }
 
