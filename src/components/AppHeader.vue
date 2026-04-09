@@ -2,9 +2,9 @@
 
 
 import { useAuthStore } from '@/stores/authStore'
-import MainMenu from "@/views/MainMenu.vue";
+import MainMenu from "@/components/MainMenu.vue";
 import {storeToRefs} from "pinia";
-import AccountMenu from "@/views/AccountMenu.vue";
+import AccountMenu from "@/components/AccountMenu.vue";
 
 const authStore = useAuthStore()
 const {isLoggedIn} = storeToRefs(authStore)

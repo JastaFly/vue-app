@@ -3,7 +3,7 @@ import UserAva from "@/components/UserAva.vue";
 </script>
 
 <template>
-  <a class="link" href="/">Home</a>
+  <router-link class="link" to="/">Home</router-link>
   <router-link to="/articles/new" class="link" active-class="link__active">
     <svg clip-rule="evenodd"
          fill-rule="evenodd"
