@@ -13,7 +13,7 @@ const {isLoggedIn} = storeToRefs(authStore)
 
 <template>
 <header>
-  <a href="/" class="logo">conduit</a>
+  <router-link to="/" class="logo">conduit</router-link>
   <menu>
 
 
