@@ -166,6 +166,7 @@ main {
   padding-left: 10px;
   height: fit-content;
   cursor: pointer;
+  color: #979797;
 }
 
 .follow_red {

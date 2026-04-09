@@ -91,10 +91,7 @@ function deleteArticle() {
 </template>
 
 <style scoped>
-.follow {
-  display: flex;
-  align-items: center;
-}
+
 .follow-wrap {
   display: flex;
   align-items: center;
@@ -136,6 +133,12 @@ function deleteArticle() {
 
 .follow_green {
   border-color: #44964a;
+
+  display: flex;
+  align-items: center;
+}
+
+.follow__text {
   color: #44964a;
 }
 
