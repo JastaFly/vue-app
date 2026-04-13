@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import { ref} from 'vue'
 import {registration as registrationApi, login as loginApi, getCurrentUser as getCurrentUserApi, updateCurrentUser as  updateCurrentUserRequest} from '@/api/auth'
 import { useRouter } from 'vue-router'
-import {setItem} from "@/helpers/persistenceStorage";
+import {setItem, getItem} from "@/helpers/persistenceStorage";
 import {useSettingsStore} from "@/stores/settingsStore";
 
 export const useAuthStore = defineStore('auth', () => {
@@ -26,9 +26,11 @@ export const useAuthStore = defineStore('auth', () => {
     }
 
     function auth(authUser) {
+        setItem('accessToken', authUser.token)
         isSubmit.value = false
         currentUser.value = authUser
         isLoggedIn.value = true
+
     }
     function registrationFail(error) {
         isSubmit.value = false
@@ -39,10 +41,10 @@ export const useAuthStore = defineStore('auth', () => {
         registrationStart()
     }
 
-    function loginSuccess(user) {
-        auth(user)
-    }
-
+function loginSuccess(currentUser) {
+    auth(currentUser)
+    router.push('/')
+}
     function loginFail(error) {
         registrationFail(error)
     }
@@ -51,12 +53,10 @@ export const useAuthStore = defineStore('auth', () => {
         isLoading.value = true
     }
 
-    function getCurrentUserSuccess(loadUser) {
-        isLoading.value = false
-        currentUser.value = loadUser
-        isLoggedIn.value = true
-        router.push('/')
-    }
+function getCurrentUserSuccess(currentUser) {
+    auth(currentUser)
+
+}
 
     function getCurrentUserFailure() {
         isLoading.value = false
@@ -82,8 +82,7 @@ export const useAuthStore = defineStore('auth', () => {
 
 
                 if(result.user) {
-
-                    getCurrentUserSuccess(result.user)
+                    loginSuccess(result.user)
                 }
 
 
@@ -95,15 +94,16 @@ export const useAuthStore = defineStore('auth', () => {
     }
 
     function getCurrentUser() {
-        getCurrentUserStart()
-        getCurrentUserApi().then((result) => {
-                console.log(result.errors)
-
+        if(getItem('accessToken')) {
+            getCurrentUserStart()
+            getCurrentUserApi().then((result) => {
 
 
                 if(result.user) {
-                    setItem('accessToken', result.user.token)
-                    loginSuccess(result.user)
+                    getCurrentUserSuccess(result.user)
+
+
+
                 }
 
                 if(result.errors) {
@@ -114,6 +114,8 @@ export const useAuthStore = defineStore('auth', () => {
                 loginFail(error)
 
             })
+        }
+
 
     }
 

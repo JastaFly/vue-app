@@ -7,17 +7,12 @@
 import { onMounted } from 'vue'
 import AppHeader from "@/components/AppHeader.vue";
 import { useAuthStore } from '@/stores/authStore';
-import {storeToRefs} from "pinia";
+
 
 const authStore = useAuthStore()
-const {isLoggedIn} = storeToRefs(authStore)
 
 onMounted(() => {
-  console.log(isLoggedIn.value)
-  if(isLoggedIn.value) {
     authStore.getCurrentUser()
-  }
-
 })
 </script>
 
