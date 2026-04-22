@@ -9,6 +9,7 @@ import ArticlePage from "@/views/ArticlePage.vue";
 import CreateArticle from "@/views/CreateArticle.vue";
 import EditArticle from "@/views/EditArticle.vue";
 import UserSettings from "@/views/UserSettings.vue";
+import UserProfile from "@/views/UserProfile.vue";
 
 const routes = [
     { path: '/registration', component: RegistrationPage },
@@ -20,6 +21,8 @@ const routes = [
     { path: '/articles/new', component: CreateArticle, name: 'createArticle' },
     { path: '/articles/:slug/edit', component: EditArticle, name: 'editArticle' },
     { path: '/settings', component: UserSettings, name: 'settings' },
+    { path: '/profiles/:slug', component: UserProfile, name: 'userProfile' },
+    { path: '/profiles/:slug/favorites', component: UserProfile, name: 'userProfileFavorites' }
 ]
 
 export const router = createRouter({

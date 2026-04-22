@@ -6,6 +6,7 @@ import ErrorMessage from "@/components/ErrorMessage.vue";
 import ArticleAuthor from "@/components/ArticleAuthor.vue";
 import ArticleTags from "@/components/ArticleTags.vue";
 import AddToFavorite from "@/components/AddToFavorite.vue";
+import {watch} from "vue";
 
 const feedStore = useFeedStore()
 const {feeds, isLoading, feedError} = storeToRefs(feedStore)
@@ -19,7 +20,11 @@ const props = defineProps({
 
 feedStore.getFeed(props.url)
 
-
+watch(() => {
+  return props.url
+}, (newUrl) => {
+  feedStore.getFeed(newUrl)
+})
 
 </script>
 

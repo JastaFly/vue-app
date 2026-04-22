@@ -23,24 +23,5 @@ const {isLoggedIn} = storeToRefs(authStore)
 </template>
 
 <style scoped>
-.tab {
-  display: flex;
-}
 
-.tab__item {
-  color: #b9bab9;
-  padding-top: 7px;
-  padding-bottom: 7px;
-  padding-left: 10px;
-  padding-right: 10px;
-  cursor: pointer;
-  margin-top: 0;
-  margin-bottom: 0;
-  text-decoration: none;
-}
-
-.tab__item_active {
-  color: #5CB85C;
-  border-bottom: 2px #5CB85C solid;
-}
 </style>

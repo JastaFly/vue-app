@@ -36,7 +36,7 @@ if(props.viewMode === 'dark-bg') {
   <div class="author">
     <img :src="author.image" :alt="author.username" class="ava mar-r-15">
     <div class="author__wrap">
-      <p href="" :class="`author__name ${viewModeCssClass}`">{{author.username}}</p>
+      <router-link :to="`/profiles/${author.username}`" :class="`author__name ${viewModeCssClass}`">{{author.username}}</router-link>
       <p class="author__date">{{date }}</p>
     </div>
 

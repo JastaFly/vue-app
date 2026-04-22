@@ -103,10 +103,7 @@ function deleteArticle() {
 
 
 
-.follow__text {
-  color: #979797;
-  text-decoration: none;
-}
+
 
 .follow__text_red {
   color: #854241;
@@ -117,15 +114,8 @@ function deleteArticle() {
 .follow:last-child {
   margin-right: 0;
 }
-.follow__icon {
-  width: 15px;
-  margin-right: 5px;
-  fill: #44964a;
-}
 
-.follow__icon_gray {
-  fill: #979797;
-}
+
 
 .follow__icon_red {
   fill: #854241;

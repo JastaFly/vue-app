@@ -162,6 +162,8 @@ main {
   height: fit-content;
   cursor: pointer;
   color: #979797;
+  display: flex;
+  align-items: center;
 }
 
 .follow_red {
@@ -175,8 +177,67 @@ main {
   border-radius: 200px;
 }
 
+
+
+.follow__text {
+  color: #979797;
+  text-decoration: none;
+}
+
+.follow__icon {
+  width: 15px;
+  margin-right: 5px;
+  fill: #44964a;
+}
+
+.follow__icon_gray {
+  fill: #979797;
+}
+
+.tab {
+  display: flex;
+}
+
+.tab__item {
+  color: #b9bab9;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-left: 10px;
+  padding-right: 10px;
+  cursor: pointer;
+  margin-top: 0;
+  margin-bottom: 0;
+  text-decoration: none;
+}
+
+.tab__item_active {
+  color: #5CB85C;
+  border-bottom: 2px #5CB85C solid;
+}
+
+.tab {
+  display: flex;
+}
+
+.tab__item {
+  color: #b9bab9;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-left: 10px;
+  padding-right: 10px;
+  cursor: pointer;
+  margin-top: 0;
+  margin-bottom: 0;
+  text-decoration: none;
+}
+
+.tab__item_active {
+  color: #5CB85C;
+  border-bottom: 2px #5CB85C solid;
+}
 hr {
   margin-top: 20px;
   margin-bottom: 30px;
 }
+
 </style>
