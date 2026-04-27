@@ -5,6 +5,7 @@ import {storeToRefs} from "pinia";
 import {computed} from "vue";
 import {deleteArticleRequest} from "@/api/article";
 import {useRouter} from "vue-router";
+import {useArticleStore} from "@/stores/articleStore";
 
 const props = defineProps({
   author: {
@@ -26,12 +27,17 @@ const props = defineProps({
   slug: {
     type: String,
     required: true
+  },
+  favorited: {
+    type: Boolean,
+    required: true
   }
 })
 
 const authStore = useAuthStore()
 const {currentUser} = storeToRefs(authStore)
 const router = useRouter()
+const articleStore = useArticleStore()
 const isCurrentUserAuthor = computed(() => {
   if(!currentUser.value || !props.author) {
     return false
@@ -61,6 +67,8 @@ function deleteArticle() {
 
 
 }
+console.log(111111111)
+console.log(props.favorited)
 </script>
 
 <template>
@@ -78,7 +86,7 @@ function deleteArticle() {
     </div>
     <div v-else class="buttons">
       <button class="follow">{{ `+ Follow ${author.username}` }}</button>
-      <button class="follow follow_green">
+      <button class="follow follow_green" :class="{'follow_green_bg': favorited}" @click="articleStore.like">
         <svg class="follow__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <path
               d="M12 4.435c-1.989-5.399-12-4.597-12 3.568 0 4.068 3.06 9.481 12 14.997 8.94-5.516 12-10.929 12-14.997 0-8.118-10-8.999-12-3.568z"/>
@@ -126,6 +134,20 @@ function deleteArticle() {
 
   display: flex;
   align-items: center;
+}
+
+.follow_green_bg {
+  background-color: #44964a;
+
+
+}
+
+.follow_green_bg .follow__text {
+  color: white;
+}
+
+.follow_green_bg .follow__icon {
+  fill: white;
 }
 
 .follow__text_green {

@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import {ref} from "vue";
 import {getArticleRequest} from "@/api/article";
+import {addToFavorites, removeFromFavorites} from "@/api/favorites";
 
 
 export const useArticleStore = defineStore('article', () => {
@@ -42,11 +43,27 @@ export const useArticleStore = defineStore('article', () => {
 
     }
 
+    function like() {
+        if(article.value.favorited) {
+            removeFromFavorites(article.value.slug)
+            article.value.favorited = false
+
+            if(article.value.favoritesCount) {
+                article.value.favoritesCount--
+            }
+        } else {
+            addToFavorites(article.value.slug)
+            article.value.favorited = true
+            article.value.favoritesCount++
+        }
+    }
+
 
     return {
         getArticle,
         article,
         articleError,
         isLoading,
+        like
     }
 })

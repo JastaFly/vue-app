@@ -1,8 +1,8 @@
-import {authPost, authDelete, authPut} from "@/helpers/request";
+import {authPost, authDelete, authPut, authGet} from "@/helpers/request";
 
 
 function getArticleRequest(slug) {
-    return fetch(`/api/articles/${slug}`).then((response) => {
+    return authGet(`/api/articles/${slug}`).then((response) => {
         return response.json()
     })
 }

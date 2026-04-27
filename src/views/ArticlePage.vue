@@ -27,12 +27,12 @@ setTimeout(() => {
   <article v-if="article">
     <div  class="banner banner_dark">
       <h1>{{ article.title }}</h1>
-      <FollowBlock :favorites-count="article.favoritesCount" :source-date="article.createdAt" :author="article.author" :slug="article.slug" :view-mode="'dark-bg'"></FollowBlock>
+      <FollowBlock :favorites-count="article.favoritesCount" :source-date="article.createdAt" :author="article.author" :slug="article.slug" :view-mode="'dark-bg'" :favorited="article.favorited"></FollowBlock>
     </div>
     <p v-if="article" class="article">{{article.body}}</p>
     <ArticleTags :tags="article.tagList"></ArticleTags>
     <hr>
-    <FollowBlock :favorites-count="article.favoritesCount" :source-date="article.createdAt" :author="article.author" :view-mode="'center'"></FollowBlock>
+    <FollowBlock :favorites-count="article.favoritesCount" :source-date="article.createdAt" :author="article.author" :view-mode="'center'" :favorited="article.favorited"></FollowBlock>
     <form action="" name="comment">
       <textarea placeholder="Write a comment.."></textarea>
       <div class="footer-form">
