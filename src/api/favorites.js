@@ -11,7 +11,21 @@ function removeFromFavorites(slug) {
     authDelete(getUrl(slug))
 }
 
+function followToAuthor(user) {
+    return authPost(`/api/profiles/${user}/follow`).then((response) => {
+        return response.json()
+    })
+}
+
+function unfollowFromAuthor(user) {
+    return authDelete(`/api/profiles/${user}/follow`).then((response) => {
+        return response.json()
+    })
+}
+
 export {
     addToFavorites,
-    removeFromFavorites
+    removeFromFavorites,
+    followToAuthor,
+    unfollowFromAuthor
 }

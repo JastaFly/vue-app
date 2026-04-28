@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import {ref} from "vue";
 import {getArticleRequest} from "@/api/article";
-import {addToFavorites, removeFromFavorites} from "@/api/favorites";
+import {addToFavorites, removeFromFavorites, followToAuthor, unfollowFromAuthor} from "@/api/favorites";
 
 
 export const useArticleStore = defineStore('article', () => {
@@ -58,12 +58,36 @@ export const useArticleStore = defineStore('article', () => {
         }
     }
 
+    function follow(user) {
+        console.log(article.value.author.following)
+        if(article.value.author.following) {
+            unfollowFromAuthor(user).then(result => {
+                changeFollowStatus(result.profile, false)
+            })
+
+        } else {
+            followToAuthor(user).then(result => {
+                changeFollowStatus(result.profile, true)
+            })
+        }
+
+    }
+
+    function changeFollowStatus(changeResult, status) {
+        if(changeResult) {
+            article.value.author.following = status
+        } else {
+            articleError.value = changeResult
+        }
+    }
+
 
     return {
         getArticle,
         article,
         articleError,
         isLoading,
-        like
+        like,
+        follow
     }
 })

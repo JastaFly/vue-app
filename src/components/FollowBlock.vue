@@ -67,8 +67,16 @@ function deleteArticle() {
 
 
 }
-console.log(111111111)
-console.log(props.favorited)
+
+let followTxt = computed(() => {
+  let followTxt = `+ Follow ${props.author.username}`
+
+  if(props.author.following) {
+    followTxt = `- Unfollow ${props.author.username}`
+  }
+
+  return followTxt
+})
 </script>
 
 <template>
@@ -85,7 +93,7 @@ console.log(props.favorited)
       </button>
     </div>
     <div v-else class="buttons">
-      <button class="follow">{{ `+ Follow ${author.username}` }}</button>
+      <button class="follow" :class="{'follow_white_bg': author.following}" @click="articleStore.follow(author.username)">{{followTxt}}</button>
       <button class="follow follow_green" :class="{'follow_green_bg': favorited}" @click="articleStore.like">
         <svg class="follow__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <path
@@ -148,6 +156,11 @@ console.log(props.favorited)
 
 .follow_green_bg .follow__icon {
   fill: white;
+}
+
+.follow_white_bg {
+  background-color: #dddddd;
+  color: #2d2d2d;
 }
 
 .follow__text_green {
