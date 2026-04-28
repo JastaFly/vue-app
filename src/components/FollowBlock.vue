@@ -159,7 +159,7 @@ let followTxt = computed(() => {
 }
 
 .follow_white_bg {
-  background-color: #dddddd;
+  background-color: white;
   color: #2d2d2d;
 }
 
