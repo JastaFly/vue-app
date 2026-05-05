@@ -5,11 +5,16 @@ import FollowBlock from "@/components/FollowBlock.vue";
 import {useRoute} from 'vue-router'
 import {storeToRefs} from "pinia";
 import AppLoading from "@/components/AppLoading.vue";
-import UserAva from "@/components/UserAva.vue";
+import ArticleComments from "@/components/ArticleComments.vue";
 import ArticleTags from "@/components/ArticleTags.vue";
 
+
+
 const articleStore = useArticleStore()
+
 const {article, isLoading} = storeToRefs(articleStore)
+
+
 
 onMounted(() => {
   const route = useRoute()
@@ -17,9 +22,7 @@ onMounted(() => {
   articleStore.getArticle(route.params.slug)
 
 })
-setTimeout(() => {
-  console.log(article.value)
-}, 2000)
+
 </script>
 
 <template>
@@ -33,13 +36,8 @@ setTimeout(() => {
     <ArticleTags :tags="article.tagList"></ArticleTags>
     <hr>
     <FollowBlock :favorites-count="article.favoritesCount" :source-date="article.createdAt" :author="article.author" :view-mode="'center'" :favorited="article.favorited"></FollowBlock>
-    <form action="" name="comment">
-      <textarea placeholder="Write a comment.."></textarea>
-      <div class="footer-form">
-        <UserAva></UserAva>
-        <input type="submit" value="Post Comment">
-      </div>
-    </form>
+<ArticleComments></ArticleComments>
+
   </article>
 
 </template>
@@ -51,11 +49,7 @@ h1 {
 
 
 
-form {
-  width: 70%;
-  background-color: #f3f3f3;
-  border-radius: 5px;
-}
+
 
 textarea {
   width: 100%;
@@ -77,16 +71,13 @@ input {
   background-color: #2d2d2d;
 }
 
-.footer-form {
-  display: flex;
-  align-items: center;
 
-  padding: 10px;
-}
 
 
 .article {
   margin-top: 50px;
   margin-bottom: 30px;
 }
+
+
 </style>

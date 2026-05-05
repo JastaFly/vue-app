@@ -2,12 +2,15 @@ import { defineStore } from 'pinia'
 import {ref} from "vue";
 import {getArticleRequest} from "@/api/article";
 import {addToFavorites, removeFromFavorites, followToAuthor, unfollowFromAuthor} from "@/api/favorites";
+import {useCommentsStore} from "@/stores/commentsStore";
 
 
 export const useArticleStore = defineStore('article', () => {
     let article = ref(null)
     let isLoading = ref(false)
     let articleError = ref(null)
+
+    const commentStore = useCommentsStore()
 
 
     function articleStart() {
@@ -19,6 +22,7 @@ export const useArticleStore = defineStore('article', () => {
         isLoading.value = false
         article.value = articleData
 
+        commentStore.getComments(articleData.slug)
     }
 
     function articleFailure(error) {
@@ -31,10 +35,10 @@ export const useArticleStore = defineStore('article', () => {
         articleStart()
         getArticleRequest(slug).then((response) => {
             if(response.article) {
-                console.log(response.article)
+
                 articleSuccess(response.article)
             } else {
-                console.log(response) 
+
                 articleFailure(response)
             }
 

@@ -1,5 +1,6 @@
 <script setup>
-import {computed} from "vue";
+
+import {formatDate} from "@/helpers/utils";
 
 
 const props = defineProps({
@@ -17,13 +18,7 @@ const props = defineProps({
   }
 })
 
-const date = computed(() => {
-  return new Intl.DateTimeFormat('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: '2-digit'
-  }).format(new Date(props.sourceDate))
-})
+const date = formatDate(props.sourceDate)
 
 let viewModeCssClass = ''
 

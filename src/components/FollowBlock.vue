@@ -6,6 +6,7 @@ import {computed} from "vue";
 import {deleteArticleRequest} from "@/api/article";
 import {useRouter} from "vue-router";
 import {useArticleStore} from "@/stores/articleStore";
+import {formatDate} from "@/helpers/utils";
 
 const props = defineProps({
   author: {
@@ -45,11 +46,7 @@ const isCurrentUserAuthor = computed(() => {
 
   return currentUser.value.username === props.author.username
 })
-const articleDate = new Intl.DateTimeFormat('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: '2-digit'
-  }).format(new Date(props.sourceDate))
+const articleDate = formatDate(props.sourceDate)
 
 let viewModeCssClass = ''
 
