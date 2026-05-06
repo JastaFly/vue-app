@@ -7,6 +7,8 @@ import {deleteArticleRequest} from "@/api/article";
 import {useRouter} from "vue-router";
 import {useArticleStore} from "@/stores/articleStore";
 import {formatDate} from "@/helpers/utils";
+import FollowButton from "@/components/FollowButton.vue";
+
 
 const props = defineProps({
   author: {
@@ -65,15 +67,7 @@ function deleteArticle() {
 
 }
 
-let followTxt = computed(() => {
-  let followTxt = `+ Follow ${props.author.username}`
 
-  if(props.author.following) {
-    followTxt = `- Unfollow ${props.author.username}`
-  }
-
-  return followTxt
-})
 </script>
 
 <template>
@@ -90,7 +84,7 @@ let followTxt = computed(() => {
       </button>
     </div>
     <div v-else class="buttons">
-      <button class="follow" :class="{'follow_white_bg': author.following}" @click="articleStore.follow(author.username)">{{followTxt}}</button>
+<FollowButton :user="author" :current-store="articleStore"></FollowButton>
       <button class="follow follow_green" :class="{'follow_green_bg': favorited}" @click="articleStore.like">
         <svg class="follow__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <path

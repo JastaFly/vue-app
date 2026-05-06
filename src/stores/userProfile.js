@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import {ref} from "vue";
 import getUserProfileRequest from "@/api/userProfile";
+import {followToAuthor, unfollowFromAuthor} from "@/api/favorites";
 
 
 export const useUserProfile = defineStore('userProfile', () => {
@@ -41,10 +42,27 @@ export const useUserProfile = defineStore('userProfile', () => {
 
     }
 
+    function follow(user) {
+        if(userProfile.value.following) {
+            unfollowFromAuthor(user).then(result => {
+                console.log(result)
+                userProfile.value.following = false
+            })
+
+        } else {
+            followToAuthor(user).then(result => {
+                console.log(result)
+                userProfile.value.following = true
+            })
+        }
+
+    }
+
 
     return {
         getUserProfile,
 userProfile,
         isLoading,
+        follow
     }
 })
