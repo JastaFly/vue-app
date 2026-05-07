@@ -1,9 +1,7 @@
-import { defineStore } from 'pinia'
-import {ref} from "vue";
-import {updateArticleRequest, getArticleRequest} from "@/api/article";
-import {useRouter} from "vue-router";
-
-
+import {defineStore} from 'pinia'
+import {ref} from 'vue'
+import {updateArticleRequest, getArticleRequest} from '@/api/article'
+import {useRouter} from 'vue-router'
 
 export const useEditArticleStore = defineStore('editArticle', () => {
     let isSubmit = ref(false)
@@ -34,7 +32,7 @@ export const useEditArticleStore = defineStore('editArticle', () => {
 
     function getArticleSuccess(data) {
         isLoading.value = false
-article.value = data
+        article.value = data
     }
 
     function getArticleFailure() {
@@ -45,11 +43,7 @@ article.value = data
         return new Promise((resolve) => {
             updateArticleStart()
             updateArticleRequest(slug, articleData).then((newArticleData) => {
-                console.log(newArticleData)
-
-
-
-                if(newArticleData.article) {
+                if (newArticleData.article) {
                     updateArticleSuccess(newArticleData.article.slug)
                 } else {
                     updateArticleFailure(newArticleData.errors)
@@ -64,8 +58,7 @@ article.value = data
         return new Promise((resolve) => {
             getArticleStart()
             getArticleRequest(slug).then((result) => {
-
-                if(result.article) {
+                if (result.article) {
                     getArticleSuccess(result.article)
                 } else {
                     getArticleFailure(result.errors)

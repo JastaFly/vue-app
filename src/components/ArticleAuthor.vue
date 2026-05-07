@@ -1,7 +1,5 @@
 <script setup>
-
-import {formatDate} from "@/helpers/utils";
-
+import {formatDate} from '@/helpers/utils'
 
 const props = defineProps({
   author: {
@@ -22,22 +20,21 @@ const date = formatDate(props.sourceDate)
 
 let viewModeCssClass = ''
 
-if(props.viewMode === 'dark-bg') {
+if (props.viewMode === 'dark-bg') {
   viewModeCssClass = 'author__name_white'
 }
 </script>
-
 <template>
   <div class="author">
     <img :src="author.image" :alt="author.username" class="ava mar-r-15">
     <div class="author__wrap">
-      <router-link :to="`/profiles/${author.username}`" :class="`author__name ${viewModeCssClass}`">{{author.username}}</router-link>
-      <p class="author__date">{{date }}</p>
+      <router-link :to="`/profiles/${author.username}`" :class="`author__name ${viewModeCssClass}`">
+        {{ author.username }}
+      </router-link>
+      <p class="author__date">{{ date }}</p>
     </div>
-
   </div>
 </template>
-
 <style scoped>
 .author {
   display: flex;
@@ -53,6 +50,7 @@ if(props.viewMode === 'dark-bg') {
 .author__name_white {
   color: white;
 }
+
 .mar-r-15 {
   margin-right: 15px;
 }

@@ -1,6 +1,5 @@
 <script setup>
-import {computed} from "vue";
-
+import {computed} from 'vue'
 
 const props = defineProps({
   user: {
@@ -13,7 +12,6 @@ const props = defineProps({
   }
 })
 
-
 let followTxt = computed(() => {
   let followTxt = `+ Follow ${props.user.username}`
 
@@ -23,14 +21,9 @@ let followTxt = computed(() => {
 
   return followTxt
 })
-console.log(111111111)
-console.log(props.user)
 </script>
-
 <template>
-  <button class="follow" :class="{'follow_white_bg': user.following}" @click="currentStore.follow(user.username)">{{followTxt}}</button>
+  <button class="follow" :class="{'follow_white_bg': user.following}" @click="currentStore.follow(user.username)">
+    {{followTxt}}
+  </button>
 </template>
-
-<style scoped>
-
-</style>

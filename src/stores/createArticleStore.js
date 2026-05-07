@@ -1,7 +1,7 @@
-import { defineStore } from 'pinia'
-import {ref} from "vue";
-import {createArticleRequest} from "@/api/article";
-import {useRouter} from "vue-router";
+import {defineStore} from 'pinia'
+import {ref} from 'vue'
+import {createArticleRequest} from '@/api/article'
+import {useRouter} from 'vue-router'
 
 
 export const useCreateArticleStore = defineStore('createArticle', () => {
@@ -16,8 +16,7 @@ export const useCreateArticleStore = defineStore('createArticle', () => {
 
     function createArticleSuccess(slug) {
         isSubmit.value = false
-        console.log(slug)
-        console.log(`/articles/${slug}`)
+
         router.push(`/articles/${slug}`)
     }
 
@@ -32,8 +31,8 @@ export const useCreateArticleStore = defineStore('createArticle', () => {
             createArticleRequest(articleData).then((newArticleData) => {
                 createArticleSuccess()
 
-                if(newArticleData.article) {
-createArticleSuccess(newArticleData.article.slug)
+                if (newArticleData.article) {
+                    createArticleSuccess(newArticleData.article.slug)
                 } else {
                     createArticleFailure(newArticleData.errors)
                 }
@@ -44,7 +43,7 @@ createArticleSuccess(newArticleData.article.slug)
     }
 
     return {
-isSubmit,
+        isSubmit,
         validationErrors,
         createArticle
     }

@@ -1,14 +1,11 @@
 <script setup>
-import {ref, onMounted } from "vue";
-import {useCreateArticleStore} from "@/stores/createArticleStore";
-import ValidationErrors from "@/components/ValidationErrors.vue";
-import {storeToRefs} from "pinia";
+import {ref, onMounted} from 'vue'
+import {useCreateArticleStore} from '@/stores/createArticleStore'
+import ValidationErrors from '@/components/ValidationErrors.vue'
+import {storeToRefs} from 'pinia'
 
 const props = defineProps({
-  article: {
-    type: Object,
-
-  }
+  article: {type: Object}
 })
 let title = ref('')
 let about = ref('')
@@ -24,26 +21,19 @@ onMounted(() => {
   }
 })
 
-
 const createArticleStore = useCreateArticleStore()
 const {validationErrors} = storeToRefs(createArticleStore)
 const emit = defineEmits(['submit'])
 
 function onSubmit() {
-
-
-
   emit('submit', {
-
     title: title.value,
     description: about.value,
     body: text.value,
     tagList: tags.value.split(' ')
-  });
-
+  })
 }
 </script>
-
 <template>
   <ValidationErrors :errors="validationErrors"></ValidationErrors>
   <form name="article" action="" class="form-w-100" @submit.prevent="onSubmit">
@@ -54,9 +44,3 @@ function onSubmit() {
     <input type="submit" value="Publish Article">
   </form>
 </template>
-
-<style scoped>
-
-
-
-</style>

@@ -1,17 +1,10 @@
-<script setup>
-
-</script>
-
 <template>
-<div class="banner">
-  <h1>conduit</h1>
-  <p class="banner__slogan">A place to share your knowledge.</p>
-</div>
+  <div class="banner">
+    <h1>conduit</h1>
+    <p class="banner__slogan">A place to share your knowledge.</p>
+  </div>
 </template>
-
 <style scoped>
-
-
 h1 {
   text-align: center;
   color: white;

@@ -5,15 +5,12 @@ defineProps({
     required: true
   }
 })
-
 </script>
-
 <template>
   <div class="tags">
-    <span class="tags__item" v-for="tag in tags" :key="tag">{{tag}}</span>
+    <span class="tags__item" v-for="tag in tags" :key="tag">{{ tag }}</span>
   </div>
 </template>
-
 <style scoped>
 .tags__item {
   color: #b9bab9;

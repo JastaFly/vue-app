@@ -2,22 +2,20 @@
   <AppHeader/>
   <router-view></router-view>
 </template>
-
 <script setup>
-import { onMounted } from 'vue'
-import AppHeader from "@/components/AppHeader.vue";
-import { useAuthStore } from '@/stores/authStore';
-
+import {onMounted} from 'vue'
+import AppHeader from '@/components/AppHeader.vue'
+import {useAuthStore} from '@/stores/authStore'
 
 const authStore = useAuthStore()
 
 onMounted(() => {
-    authStore.getCurrentUser()
+  authStore.getCurrentUser()
 })
 </script>
-
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap');
+
 body {
   font-family: 'Exo 2';
   margin: 0;
@@ -177,8 +175,6 @@ main {
   border-radius: 200px;
 }
 
-
-
 .follow__text {
   color: #979797;
   text-decoration: none;
@@ -235,9 +231,9 @@ main {
   color: #5CB85C;
   border-bottom: 2px #5CB85C solid;
 }
+
 hr {
   margin-top: 20px;
   margin-bottom: 30px;
 }
-
 </style>

@@ -1,26 +1,21 @@
 module.exports = {
-    // Парсер по умолчанию для .js/.jsx файлов
     parser: '@babel/eslint-parser',
     parserOptions: {
         requireConfigFile: false,
-        ecmaVersion: 'latest', // Современный стандарт ECMAScript
+        ecmaVersion: 'latest',
         sourceType: 'module'
     },
 
     env: {
         node: true,
         browser: true
-        // 'vue/setup-compiler-macros': true // УБРАНО отсюда
     },
 
-    // Плагины и расширения
     plugins: ['vue'],
     extends: [
         'eslint:recommended',
         'plugin:vue/vue3-recommended'
     ],
-
-    // Правила для конкретных расширений файлов
     overrides: [
         {
             files: ['*.vue'],
@@ -31,12 +26,8 @@ module.exports = {
                 ecmaVersion: 'latest'
             },
             env: {
-                'vue/setup-compiler-macros': true // ОСТАЕТСЯ здесь - только для .vue файлов
+                'vue/setup-compiler-macros': true
             }
         }
     ],
-
-    rules: {
-        // Ваши пользовательские правила
-    }
-};
+}

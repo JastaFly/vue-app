@@ -1,4 +1,3 @@
-
 function range(start, end) {
     return [...Array(end).keys()].map(el => el + start)
 }
@@ -10,8 +9,6 @@ function formatDate(sourceDate) {
         day: '2-digit'
     }).format(new Date(sourceDate))
 }
-
-
 
 export {
     range,

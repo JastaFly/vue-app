@@ -1,13 +1,12 @@
-import { defineStore } from 'pinia'
-import {ref} from "vue";
-
+import {defineStore} from 'pinia'
+import {ref} from 'vue'
 
 export const useSettingsStore = defineStore('settingsStore', () => {
     let isSubmit = ref(false)
     let validationErrors = ref(null)
 
-  function changeSettingsStart() {
-isSubmit.value = true
+    function changeSettingsStart() {
+        isSubmit.value = true
         validationErrors.value = null
     }
 
@@ -21,7 +20,7 @@ isSubmit.value = true
     }
 
     return {
-validationErrors,
+        validationErrors,
         isSubmit,
         changeSettingsFailure,
         changeSettingsStart,

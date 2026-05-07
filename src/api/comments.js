@@ -1,8 +1,6 @@
-import {authDelete, authGet, authPost} from "@/helpers/request";
+import {authDelete, authGet, authPost} from '@/helpers/request'
 
 function createCommentRequest(articleSlug, commentData) {
-    console.log(commentData)
-    console.log(articleSlug)
     return authPost(`/api/articles/${articleSlug}/comments`, commentData).then((responce) => {
         return responce.json()
     })

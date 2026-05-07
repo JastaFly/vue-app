@@ -1,36 +1,26 @@
 <script setup>
-
-
-import { useAuthStore } from '@/stores/authStore'
-import MainMenu from "@/components/MainMenu.vue";
-import {storeToRefs} from "pinia";
-import AccountMenu from "@/components/AccountMenu.vue";
+import {useAuthStore} from '@/stores/authStore'
+import MainMenu from '@/components/MainMenu.vue'
+import {storeToRefs} from 'pinia'
+import AccountMenu from '@/components/AccountMenu.vue'
 
 const authStore = useAuthStore()
 const {isLoggedIn} = storeToRefs(authStore)
-
 </script>
-
 <template>
-<header>
-  <router-link to="/" class="logo">conduit</router-link>
-  <menu>
-
-
-    <AccountMenu v-if="isLoggedIn"></AccountMenu>
-    <MainMenu v-else></MainMenu>
-  </menu>
-</header>
+  <header>
+    <router-link to="/" class="logo">conduit</router-link>
+    <menu>
+      <AccountMenu v-if="isLoggedIn"></AccountMenu>
+      <MainMenu v-else></MainMenu>
+    </menu>
+  </header>
 </template>
-
 <style scoped>
 header {
   display: flex;
   justify-content: space-between;
-
 }
-
-
 
 menu {
   display: flex;

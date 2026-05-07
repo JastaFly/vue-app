@@ -1,8 +1,8 @@
-import { defineStore } from 'pinia'
-import {computed, ref} from "vue";
-import getFeedApi from "@/api/feed";
-import { useRoute } from 'vue-router'
-import {paginationLimit} from "@/helpers/vars";
+import {defineStore} from 'pinia'
+import {computed, ref} from 'vue'
+import getFeedApi from '@/api/feed'
+import {useRoute} from 'vue-router'
+import {paginationLimit} from '@/helpers/vars'
 
 export const useFeedStore = defineStore('feed', () => {
     const route = useRoute()
@@ -29,35 +29,25 @@ export const useFeedStore = defineStore('feed', () => {
     function feedSuccess(feedData) {
         isLoading.value = false
         feeds.value = feedData
-
         feedsTotal.value = feedData.articlesCount
-
     }
 
     function feedFailure(error) {
         isLoading.value = false
         feedError.value = error
-
     }
 
     function getFeed(url) {
-        console.log(url)
         feedStart()
         getFeedApi(url).then((response) => {
             response.json().then((result) => {
-                console.log(result)
-           
                 feedSuccess(result)
-
-
-
             }).catch((error) => {
                 feedFailure(error)
             })
         })
 
     }
-
 
     return {
         getFeed,

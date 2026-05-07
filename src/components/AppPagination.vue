@@ -1,6 +1,6 @@
 <script setup>
-import {range} from "@/helpers/utils";
-import { computed } from 'vue'
+import {range} from '@/helpers/utils';
+import {computed} from 'vue'
 
 const props = defineProps({
   total: {
@@ -24,21 +24,17 @@ const pages = computed(() => {
 
   return range(1, pageCount)
 })
-
-console.log(props.currentPage)
 </script>
-
 <template>
-<div class="pagination">
-  <router-link :to="`${url }?page=${page}`"
-     class="pagination__item"
-     :class="{pagination__item_active: currentPage == page}"
-     v-for="page in pages" :key="page">
-    {{page}}
-  </router-link>
-</div>
+  <div class="pagination">
+    <router-link :to="`${url }?page=${page}`"
+                 class="pagination__item"
+                 :class="{pagination__item_active: currentPage == page}"
+                 v-for="page in pages" :key="page">
+      {{ page }}
+    </router-link>
+  </div>
 </template>
-
 <style scoped>
 .pagination__item {
   color: #5CB85C;
