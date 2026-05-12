@@ -1,24 +1,23 @@
-# mediumclone_vue
+# RealWorld приложение
 
-## Project setup
-```
-npm install
-```
+Фронтед приложение созданное в рамках курса *Vue JS и Vuex - пишем реальный проект с нуля* от Александра Кочерина.
+Является копией сайта [medium.com](https://medium.com/).
 
-### Compiles and hot-reloads for development
+## Стэк
+
+Стек приложения: `Vue 3 + Pinia`. Бэкенд можно найти
+в [этом репозитории](https://github.com/gothinkster/koa-knex-realworld-example)
+
+## Инструкция
+
+1. Запуск локального сервера, с горячей перезагрузкой страниц после завершения сборки проекта:
+
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+2. Сборка проекта с минификацией для прода:
+
 ```
 npm run build
 ```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
